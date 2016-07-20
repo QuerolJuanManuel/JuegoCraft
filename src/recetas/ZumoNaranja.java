@@ -1,19 +1,27 @@
 package recetas;
 
-public class ZumoNaranja {
+import inventario.Naranjas;
 
-	int naranjas=4;
+public class ZumoNaranja {
 	
-	public void comprobarItem(int objeto){
-		
+	public int comprobarItem(){
+		Naranjas naranjas = new Naranjas();
+		int n=naranjas.verNaranjas();
+		return n;
 	}
 	
 	public void cocinar(){
 	
-		if(naranjas>=4){
-			System.out.print("Zumo naranja conseguido");
+		if(comprobarItem()>=4){
+			if(Math.random()>=0.75){
+				System.out.print("Zumo naranja conseguido \n");
+				Naranjas naranjas = new Naranjas();
+				naranjas.zumoConseguido();
+			}else{
+				System.out.print("Zumo naranja no conseguido \n");
+			}
 		}else{
-			System.out.print("No tienes suficientes naranjas");
+			System.out.print("No tienes suficientes naranjas \n");
 		}
 	}
 	

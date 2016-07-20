@@ -14,4 +14,8 @@ public class Manzanas {
 	public int verManzanas(){
 		return manzanas;
 	}
+	
+	public void zumoConseguido(){	
+		manzanas=manzanas-4;
+	}
 }

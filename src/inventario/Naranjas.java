@@ -14,4 +14,8 @@ public class Naranjas {
 	public int verNaranjas(){
 		return naranjas;
 	}
+	
+	public void zumoConseguido(){	
+		naranjas=naranjas-4;
+	}
 }
