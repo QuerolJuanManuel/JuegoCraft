@@ -7,6 +7,10 @@ public class Naranjas {
 		naranjas++;
 	}
 	
+	public void venderNaranjas(){
+		naranjas--;
+	}
+	
 	public int verNaranjas(){
 		return naranjas;
 	}
