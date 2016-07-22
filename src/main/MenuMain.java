@@ -1,5 +1,6 @@
 package main;
 
+import inventario.Dinero;
 import inventario.Manzanas;
 import inventario.Naranjas;
 
@@ -14,7 +15,7 @@ public class MenuMain {
 	
 	public static void menuPrin(){
 		Scanner teclado=new Scanner(System.in);
-		System.out.print("Introduce el valor del menu, 1 Tienda 2 Craftear 3 Inventario 4 Salir");
+		System.out.print("Introduce el valor del menu \n 1 Tienda \n 2 Craftear \n 3 Inventario \n 4 Salir \n 5 Obtener dinero");
 		
 		opcion=teclado.nextInt();
 		if(opcion==1){
@@ -25,13 +26,17 @@ public class MenuMain {
 			menuInven();
 		}else if(opcion==4){
 			salir();
+		}else if(opcion==5){
+			Dinero dinero = new Dinero();
+			dinero.obtenerDinero();
+			menuPrin();
 		}
 		teclado.close();
 	}
 	
 	public static void menuTienda(){
 		Scanner teclado=new Scanner(System.in);
-		System.out.print("Introduce el valor del menu, 1 Comprar 2 Vender 3 Volver");
+		System.out.print("Introduce el valor del menu \n 1 Comprar \n 2 Vender \n 3 Volver");
 		
 		opcion=teclado.nextInt();
 		if(opcion==1){
@@ -46,19 +51,35 @@ public class MenuMain {
 	
 	public static void menuCompra(){
 		Scanner teclado=new Scanner(System.in);
-		System.out.print("Introduce el valor del menu, 1 Naranjas 2 Manzanas 3 Volver");
+		System.out.print("Introduce el valor del menu \n 1 Naranjas \n 2 Manzanas \n 3 Volver");
 		
 		opcion=teclado.nextInt();
 		if(opcion==1){
-			Naranjas naranjas = new Naranjas();
-			naranjas.comprarNaranjas();
-			System.out.print("Naranja comprada \n");
-			menuCompra();
+			Dinero dinero = new Dinero();
+			int d=dinero.getDinero();
+			if(d>=2){	
+				Naranjas naranjas = new Naranjas();
+				naranjas.comprarNaranjas();
+				dinero.gastarDinero(2);
+				System.out.print("Naranja comprada \n");
+				menuCompra();
+			}else{
+				System.out.print("No tienes suficiente dinero");
+				menuCompra();
+			}
 		}else if(opcion==2){
-			Manzanas manzanas =new Manzanas();
-			manzanas.comprarManzanas();
-			System.out.print("Manzanas comprada \n");
-			menuCompra();
+			Dinero dinero = new Dinero();
+			int d=dinero.getDinero();
+			if(d>=4){
+				Manzanas manzanas =new Manzanas();
+				manzanas.comprarManzanas();
+				dinero.gastarDinero(4);
+				System.out.print("Manzanas comprada \n");
+				menuCompra();
+			}else{
+				System.out.print("No tienes suficiente dinero");
+				menuCompra();
+			}
 		}else if(opcion==3){
 			menuTienda();
 		}
@@ -67,7 +88,7 @@ public class MenuMain {
 	
 	public static void menuVenta(){
 		Scanner teclado=new Scanner(System.in);
-		System.out.print("Introduce el valor del menu, 1 Naranjas 2 Manzanas 3 Volver");
+		System.out.print("Introduce el valor del menu \n 1 Naranjas \n 2 Manzanas \n 3 Volver");
 		
 		opcion=teclado.nextInt();
 		if(opcion==1){
@@ -109,7 +130,7 @@ public class MenuMain {
 	
 	public static void menuInven(){
 		Scanner teclado=new Scanner(System.in);
-		System.out.print("Menu inventario 1 Ver inventario 2 Volver");
+		System.out.print("Menu inventario \n 1 Ver inventario \n 2 Volver");
 		
 		opcion=teclado.nextInt();
 		if(opcion==1){
@@ -117,9 +138,11 @@ public class MenuMain {
 			int n=naranjas.verNaranjas();
 			Manzanas manzanas = new Manzanas();
 			int m=manzanas.verManzanas();
-			System.out.print("Inventario \n");
-			System.out.print("Naranjas "+n+"\n");
-			System.out.print("Manzanas "+m+"\n");
+			Dinero dinero = new Dinero();
+			int d=dinero.getDinero();
+			System.out.print("Inventario \n Dinero "+d+"\n");
+			System.out.print(" Naranjas "+n+"\n");
+			System.out.print(" Manzanas "+m+"\n");
 			menuInven();
 		}else if(opcion==2){
 			menuPrin();
@@ -129,7 +152,7 @@ public class MenuMain {
 	
 	public static void salir(){
 		Scanner teclado=new Scanner(System.in);
-		System.out.print("1 Salir sin guardar 2 Salir y guardar");
+		System.out.print("Introduce el valor del menu \n 1 Salir sin guardar \n 2 Salir y guardar");
 		
 		opcion=teclado.nextInt();
 		if(opcion==1){

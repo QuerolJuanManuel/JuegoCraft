@@ -14,12 +14,14 @@ public class ZumoManzana {
 	public void cocinar(){
 	
 		if(comprobarItem()>=4){
-			if(Math.random()>=0.75){
+			if(Math.random()<=0.5){
 				System.out.print("Zumo manzana conseguido \n");
 				Manzanas manzanas = new Manzanas();
 				manzanas.zumoConseguido();
 			}else{
 				System.out.print("Zumo manzana no conseguido \n");
+				Manzanas manzanas = new Manzanas();
+				manzanas.zumoFallido();
 			}
 			
 		}else{
